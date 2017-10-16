@@ -1,3 +1,5 @@
+# Package "Shinyshell-sparql":
+
 
 $ all_alive_endpoints  : ""
 
@@ -17,6 +19,8 @@ $ send_sparql_select ENDPOINT SPARQL_QUERY : "Sends the sparql query to the endp
 
 $ sparqlping ENDPOINT  : ""
 
+
+This package contains the following functions:
 
 
 ## all_alive_endpoints  :
