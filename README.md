@@ -37,6 +37,8 @@ This package contains the following functions:
 
 ## ngdata ENDPOINT _NAMEDGRAPH :
 
+Retrieve the 1000 first triples of the endpoint (resp. of the
+endpoint/namedgraph)
 
 Retrieve the 1000 first triples of the endpoint (resp. of the
 endpoint/namedgraph)
@@ -46,6 +48,8 @@ ngdata http://dbpedia.datao.net/sparql http://dbpedia.org/
 
 
 ## nglist ENDPOINT :
+
+List the named graphs of an endpoint.
 
 List the named graphs of an endpoint.
 Example:
@@ -61,6 +65,8 @@ nglist http://worldcat.lolive.net/sparql
 
 
 ## send_sparql_select ENDPOINT SPARQL_QUERY :
+
+Sends the sparql query to the endpoint and format the results.
 
 Sends the sparql query to the endpoint and format the results.
 (Usually an internal function.)
