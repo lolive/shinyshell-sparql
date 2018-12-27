@@ -22,28 +22,28 @@ $ sparqlping ENDPOINT  : ""
 
 This package contains the following functions:
 
-<pre>
 
 ## all_alive_endpoints  :
 
-
-</pre>
 <pre>
+</pre>
+
 
 ## all_endpoints  :
 
-
-</pre>
 <pre>
+</pre>
+
 
 ## ngcount ENDPOINT _NAMEDGRAPH :
 
-
-</pre>
 <pre>
+</pre>
+
 
 ## ngdata ENDPOINT _NAMEDGRAPH :
 
+<pre>
 Retrieve the 1000 first triples of the endpoint (resp. of the
 endpoint/namedgraph)
 
@@ -52,44 +52,44 @@ endpoint/namedgraph)
 
 Example:
 ngdata http://dbpedia.datao.net/sparql http://dbpedia.org/
-
 </pre>
-<pre>
+
 
 ## nglist ENDPOINT :
 
+<pre>
 List the named graphs of an endpoint.
 
 List the named graphs of an endpoint.
 Example:
 nglist http://worldcat.lolive.net/sparql
-
 </pre>
-<pre>
+
 
 ## retrieve_triples_matching_predicate ENDPOINT PREDICATE EXTENSION _NAMEDGRAPH :
 
-
-</pre>
 <pre>
+</pre>
+
 
 ## retrieve_triples_matching_predicates ENDPOINT PREDICATE PREDICATEE EXTENSION _NAMEDGRAPH :
 
-
-</pre>
 <pre>
+</pre>
+
 
 ## send_sparql_select ENDPOINT SPARQL_QUERY :
 
+<pre>
 Sends the sparql query to the endpoint and format the results.
 
 Sends the sparql query to the endpoint and format the results.
 (Usually an internal function.)
-
 </pre>
-<pre>
+
 
 ## sparqlping ENDPOINT  :
 
-
+<pre>
 </pre>
+
