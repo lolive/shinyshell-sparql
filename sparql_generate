@@ -1,0 +1,5 @@
+name_params SPARQL_GENERATE_QUERY_FILE _LOG_LEVEL
+if [ ! -f /tmp/sparql-generate-jena.jar ]; then
+	curl https://ci.mines-stetienne.fr/sparql-generate/sparql-generate-jena.jar > /tmp/sparql-generate-jena.jar
+fi
+java -jar /tmp/sparql-generate-jena.jar -q ${SPARQL_GENERATE_QUERY_FILE} -l ${LOG_LEVEL:-OFF}

@@ -88,6 +88,12 @@ Sends the sparql query to the endpoint and format the results.
 </pre>
 
 
+## sparql_generate SPARQL_GENERATE_QUERY_FILE _LOG_LEVEL :
+
+<pre>
+</pre>
+
+
 ## sparqlping ENDPOINT  :
 
 <pre>
