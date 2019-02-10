@@ -1,10 +1,73 @@
-name_params GTFS_DIR
+name_params GTFS_DIR NAMESPACE
 cd $GTFS_DIR
 mkdir n3
-shape2shape shapes.csv > shapes.ok.csv
-tarql shapes_to_line.rq shapes.ok.csv > n3/shapes.n3 
-tarql trips_to_ligne.rq trips.csv > n3/ligne.n3
-tarql stop_times_to_horaires.rq stop_times.csv > n3/horaires.n3
-tarql stops_to_arret.rq stops.csv > n3/arret.n3
+echo "PREFIX : <$NAMESPACE>" > shapes_to_line.rq
+cat <<'EOF' >> shapes_to_line.rq
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+ ?shape a :Shape ;
+        <http://www.opengis.net/ont/geosparql#asWKT> ?line .
+} WHERE {
+ bind(uri(concat("http://datao.net/Bus44/",?shape_id)) as ?shape)
+ bind(?shape_line as ?line)
+}
+EOF
+echo "PREFIX : <$NAMESPACE>" > trips_to_ligne.rq
+cat <<'EOF' >> trips_to_ligne.rq
+PREFIX : <$NAMESPACE> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+ ?ligne a :Ligne ;
+        :hasTrajet ?trajet ;
+        rdfs:label ?label ;
+        :hasShape ?shape .
+} WHERE {
+ bind(uri(concat("http://datao.net/Bus44/",?route_id)) as ?ligne)
+ bind(uri(concat("http://datao.net/Bus44/",?trip_id)) as ?trajet)
+ bind(?trip_headsign as ?label)
+ bind(uri(concat("http://datao.net/Bus44/",COALESCE(?shape_id,"none"))) as ?shape)
+}
+EOF
+echo "PREFIX : <$NAMESPACE>" > stop_times_to_horaires.rq
+cat <<'EOF' >> stop_times_to_horaires.rq
+PREFIX : <$NAMESPACE> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+ ?horaire a :Horaire ;
+        :arrivalTime ?arrivalTime ;
+        :atBusStop ?busStop ;
+} WHERE {
+ bind(uri(concat("http://datao.net/Bus44/",?trip_id)) as ?horaire)
+ bind(uri(concat("http://datao.net/Bus44/",?stop_id)) as ?busStop)
+ bind(?arrival_time as ?arrivalTime)
+}
+EOF
+echo "PREFIX : <$NAMESPACE>" > stops_to_arret.rq
+cat <<'EOF' >> stops_to_arret.rq
+PREFIX : <$NAMESPACE> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+ ?stop a :Arret;
+        rdfs:label ?label;
+        wgs84:lat ?lat;
+        wgs84:long ?long .
+} WHERE {
+ bind(uri(concat("http://datao.net/Bus44/",?stop_id)) as ?stop)
+ bind(?stop_name as ?label)
+ bind(?stop_lat as ?lat)
+ bind(?stop_lon as ?long)
+}
+EOF
+shape2shape shapes.txt > shapes.ok.txt
+tarql shapes_to_line.rq shapes.ok.txt > n3/shapes.n3 
+tarql trips_to_ligne.rq trips.txt > n3/ligne.n3
+tarql stop_times_to_horaires.rq stop_times.txt > n3/horaires.n3
+tarql stops_to_arret.rq stops.txt > n3/arret.n3
 echo "RDF data is available at $PWD/n3"
 cd - > /dev/null

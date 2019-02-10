@@ -35,7 +35,7 @@ This package contains the following functions:
 </pre>
 
 
-## gtfs2n3 GTFS_DIR :
+## gtfs2n3 GTFS_DIR NAMESPACE :
 
 <pre>
 </pre>
