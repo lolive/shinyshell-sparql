@@ -1,0 +1,10 @@
+name_params GTFS_DIR
+cd $GTFS_DIR
+mkdir n3
+shape2shape shapes.csv > shapes.ok.csv
+tarql shapes_to_line.rq shapes.ok.csv > n3/shapes.n3 
+tarql trips_to_ligne.rq trips.csv > n3/ligne.n3
+tarql stop_times_to_horaires.rq stop_times.csv > n3/horaires.n3
+tarql stops_to_arret.rq stops.csv > n3/arret.n3
+echo "RDF data is available at $PWD/n3"
+cd - > /dev/null

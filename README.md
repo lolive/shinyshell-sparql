@@ -35,6 +35,12 @@ This package contains the following functions:
 </pre>
 
 
+## gtfs2n3 GTFS_DIR :
+
+<pre>
+</pre>
+
+
 ## ngcount ENDPOINT _NAMEDGRAPH :
 
 <pre>
@@ -85,6 +91,12 @@ Sends the sparql query to the endpoint and format the results.
 
 Sends the sparql query to the endpoint and format the results.
 (Usually an internal function.)
+</pre>
+
+
+## shape2shape GTFS_SHAPE_FILE :
+
+<pre>
 </pre>
 
 
